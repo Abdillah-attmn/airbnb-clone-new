@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <%= render "shared/navbar" %>
+    <%= link_to "logout", destroy_user_session_path, class:'btn btn-danger'  %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
