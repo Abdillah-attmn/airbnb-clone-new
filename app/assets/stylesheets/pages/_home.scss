@@ -1,5 +1,5 @@
 // Specific CSS for your home-page
-
+@import "../cars/car_index";
 
 .banner {
   background-size: cover;
@@ -10,15 +10,15 @@
 .banner h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  font-size: 45px;
   font-weight: bold;
 }
 
 .banner p {
   font-size: 20px;
   color: white;
-  opacity: .7;
+  opacity: .5;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 

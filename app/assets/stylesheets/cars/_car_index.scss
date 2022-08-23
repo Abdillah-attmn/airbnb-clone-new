@@ -1,0 +1,24 @@
+
+
+.containerIndex {
+  margin-top: 20px;
+}
+
+#title-index {
+  color: #EC605F;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.card-category {
+  background-size: cover;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
