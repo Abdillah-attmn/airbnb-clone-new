@@ -1,0 +1,140 @@
+<h1 class="text-center"><%= @car.title %></h1>
+
+<div class="container">
+
+  <div class="row">
+    <div class ="photo-row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="card showmaincard"
+        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @car.photo.path, height: 300, width: 400, crop: :fill %>')">
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="wagoncard showmaincard">
+            <div class="wagoncard-category"> <strong> <%= @car.user.firstname %> </strong> </div>
+            <div class="wagoncard-detail">
+              <i class="fa fa-book" aria-hidden="true"></i>
+              <i>" <%= @car.user.content %> "</i>
+            </div>
+          <%= cl_image_tag @car.user.photo.path, width: 50, height: 50, class: "wagoncard-user avatar avatar-semi" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+
+      <p> <i class="fa fa-map-marker" aria-hidden="true"></i> <%= @car.address %> <%= @car.city %> <%= @car.country %></p>
+      <p> <i class="fa fa-eur" aria-hidden="true"></i> <%= @car.price %> per day ... but so much love</p>
+      <p> <strong>Description:</strong> </p>
+      <p><%= @car.content %></p>
+      <div class = "equipment-div">
+        <p><strong>Equipments</strong></p>
+        <i class="fa fa-car pad" aria-hidden="true"> <%= @car.blanket_type %>  </i>
+        <%= image_tag "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600", class: "equipment" %>
+          <% if @car.pillow %>
+            <i class="fa fa-check pad" aria-hidden="true"></i>
+          <% else %>
+            <i class="fa fa-times pad" aria-hidden="true"></i>
+          <% end %>
+
+        <i class="fa fa-coffee fa-lg " aria-hidden="true" ></i>
+        <% if @car.breakfast %>
+          <i class="fa fa-check pad" aria-hidden="true"></i>
+        <% else %>
+          <i class="fa fa-times pad" aria-hidden="true"></i>
+        <% end %>
+      </div>
+
+      <div>
+        <p><strong>Reviews</strong></p>
+        <% @bookings.each do |booking|%>
+        <ul class="list-inline">
+         <% if booking.review %>
+            <li class="list-unstyled">
+            <div class="review-chat">
+              <%= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :thumb, gravity: :face, class: "avatar"  %>
+              <div class="review-comment">
+                <% booking.review.rating.times do %>
+                <i class="fa fa-star" aria-hidden="true" ></i>
+                <% end %>
+                <% (5- booking.review.rating).times do %>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                <% end %>
+                <p> <%= booking.review.content %> </p>
+              </div>
+            </div>
+            </li>
+          <% end %>
+         </ul>
+       <% end %>
+     </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="text-center">
+        <%= simple_form_for [@car, @booking] do |f| %>
+
+          <div class="booking-card">
+            <div >
+            <p>From </p>
+            <%= f.text_field :start_date, class: "datepicker start_date", value: @start_date, placeholder: "dd/mm/yyyy" %>
+            </div>
+            <div>
+            <p> To </p>
+            <%= f.text_field :end_date, class: "datepicker end_date", value: @end_date, placeholder: "dd/mm/yyyy" %>
+            </div>
+            <p> <strong>Total price: <span id="total_price"><%= @total_price %> €</span></strong></p>
+            <%= f.submit "Book", class: "btn btn-danger"%>
+          </div>
+
+        <% end%>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="static-map"></div>
+
+
+<% content_for(:after_js) do %>
+
+
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google', { markers: { clusterer: undefined }});
+      handler.buildMap({
+        provider: {
+          scrollwheel: false,
+          zoomControl: false
+        },
+        internal: { id: 'static-map' }
+      }, function(){
+        markers = handler.addMarkers([
+          {
+            "lat": <%= @car.latitude  %>,
+            "lng": <%= @car.longitude %>,
+
+          },
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(15);
+      });
+      $(".checkin_on, .checkout_on").on("change", function(e) {
+        var from = $(".checkin_on").val().split("/");
+        var to = $(".checkout_on").val().split("/");
+        var start = new Date(from[2], from[1] - 1, from[0]);
+        var end = new Date(to[2], to[1] - 1, to[0]);
+        var nb_days = Math.round((end - start)/(1000*60*60*24));
+        var total_price = nb_days * <%= @car.price %> || 0 ;
+        $("#total_price").html(total_price + " €");
+      });
+    });
+  </script>
+
+<% end %>
