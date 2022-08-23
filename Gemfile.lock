@@ -152,7 +152,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.8-x86_64-linux)
+    nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.4.3)
@@ -250,7 +250,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  x86_64-linux
+  x86_64-darwin-18
 
 DEPENDENCIES
   autoprefixer-rails
@@ -264,7 +264,7 @@ DEPENDENCIES
   jsbundling-rails
   pg (~> 1.1)
   puma (~> 5.0)
-  rails (~> 7.0.3, >= 7.0.3.1)
+  rails (~> 7.0.3)
   sassc-rails
   selenium-webdriver
   simple_form!
@@ -279,4 +279,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.16
+   2.3.20
