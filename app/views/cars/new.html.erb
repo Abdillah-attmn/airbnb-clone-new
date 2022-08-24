@@ -10,16 +10,14 @@
       <%= f.input :title, placeholder: "Warm car with silk sheets", :label_html => { :class => "label-css"} %>
       <%= f.input :address, label: "My lovely nest is located at this address", placeholder: "36 avenue du calin" %>
       <%= f.input :city, placeholder: "Bisouville" %>
-      <%= f.input :country, priority: ["France"] %>
+      <%#= f.input :country %>
       <%= f.input :content, label: "A sexy description for your car", placeholder: "My car is a mercides car with a good engin and so speed as well as thr color is so sexy and (or more)" %>
       <%= f.input :price, label: "Price per day in €", placeholder: "48" %>
       <br>
-      <%= f.input :photo, as: :attachinary, label: "Choose a nice picture for your car" %>
+      <%= f.input :photo, label: "Choose a nice picture for your car" %>
       <br>
       <hr>
       <h4><strong>EQUIPEMENTS</strong> </h4>
-      <br>
-      <%= f.input :blanket_type, collection: car::STUFF, label: "What kind of stuff are you providing?" %>
       <br>
       <hr>
       <%= f.button :submit, "Share my car", class: "btn btn-danger btn-lg"%>
