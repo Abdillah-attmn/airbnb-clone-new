@@ -3,6 +3,13 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   def index
     @cars = Car.all
+
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new

@@ -15,7 +15,7 @@ require 'faker'
     car = Car.create!(title: Faker::Vehicle.make_and_model, content: Faker::Vehicle.fuel_type,
                       photo: "https://www.auto-moto.com/wp-content/uploads/sites/9/2022/02/home-vw-tiguan-750x410.jpg",
                       address: Faker::Address.full_address, latitude: Faker::Address.latitude,
-                      longitude: Faker::Address.longitude, price: (120..150).to_a.sample,
+                      longitude: Faker::Address.longitude, price: (120..130).to_a.sample,
                       user: user)
 
     booking = Booking.create!(start_date: Faker::Date.in_date_period,
