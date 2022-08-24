@@ -1,3 +1,4 @@
+<!-- CAR -->
 <h1 class="text-center"><%= @car.title %></h1>
 
 <div class="container">
@@ -6,18 +7,18 @@
     <div class ="photo-row">
       <div class="col-xs-12 col-sm-6">
         <div class="card showmaincard"
-        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @car.photo.path, height: 300, width: 400, crop: :fill %>')">
+        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @car.photo %>')">
         </div>
       </div>
 
       <div class="col-xs-12 col-sm-6">
         <div class="wagoncard showmaincard">
             <div class="wagoncard-category"> <strong> <%= @car.user.firstname %> </strong> </div>
+            <div class="wagoncard-category"> <strong> <%= @car.user.lastname %> </strong> </div>
             <div class="wagoncard-detail">
               <i class="fa fa-book" aria-hidden="true"></i>
-              <i>" <%= @car.user.content %> "</i>
+              <i>" <%= @car.content %> "</i>
             </div>
-          <%= cl_image_tag @car.user.photo.path, width: 50, height: 50, class: "wagoncard-user avatar avatar-semi" %>
         </div>
       </div>
     </div>
@@ -27,27 +28,19 @@
     <div class="col-xs-12 col-sm-6">
 
       <p> <i class="fa fa-map-marker" aria-hidden="true"></i> <%= @car.address %> <%= @car.city %> <%= @car.country %></p>
-      <p> <i class="fa fa-eur" aria-hidden="true"></i> <%= @car.price %> per day ... but so much love</p>
+      <p> <i class="fa fa-eur" aria-hidden="true"></i> <%= @car.price %> € per day</p>
       <p> <strong>Description:</strong> </p>
       <p><%= @car.content %></p>
-      <div class = "equipment-div">
-        <p><strong>Equipments</strong></p>
-        <i class="fa fa-car pad" aria-hidden="true"> <%= @car.blanket_type %>  </i>
-        <%= image_tag "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600", class: "equipment" %>
-          <% if @car.pillow %>
-            <i class="fa fa-check pad" aria-hidden="true"></i>
-          <% else %>
-            <i class="fa fa-times pad" aria-hidden="true"></i>
-          <% end %>
 
-        <i class="fa fa-coffee fa-lg " aria-hidden="true" ></i>
-        <% if @car.breakfast %>
-          <i class="fa fa-check pad" aria-hidden="true"></i>
-        <% else %>
-          <i class="fa fa-times pad" aria-hidden="true"></i>
-        <% end %>
+      <div class = "equipment-div">
+        <p><strong>Equipments  </strong><i class="fa fa-car fa-lg " aria-hidden="true" ></i></p>
+        <%= image_tag @car.photo, class: "equipment" %>
+      </div>
+      <div class = "edit-div">
+        <%= link_to "edit a car", edit_car_path(@car), class:"btn btn-primary" %>
       </div>
 
+<!-- Reviews -->
       <div>
         <p><strong>Reviews</strong></p>
         <% @bookings.each do |booking|%>
@@ -74,24 +67,26 @@
 
     </div>
 
+<!-- BOOKINGS -->
     <div class="col-xs-12 col-sm-6">
       <div class="text-center">
-        <%= simple_form_for [@car, @booking] do |f| %>
-
+        <%= simple_form_for [@car, @booking], {data:{controller: "updateprice"}} do |f| %>
           <div class="booking-card">
             <div >
-            <p>From </p>
-            <%= f.text_field :start_date, class: "datepicker start_date", value: @start_date, placeholder: "dd/mm/yyyy" %>
+            <p class="font-weight-bold"> RENT CAR PER DAY </p>
+            <%= f.input :start_date, class: "datepicker start_date", placeholder: "dd/mm/yyyy", html5: true, as: :date,  input_html: { data: {updateprice_target: "startdate", action: "change->updateprice#update"}} %>
             </div>
+            <p class="d-none" data-updateprice-target= "priceperday"><%= @car.price %></p>
             <div>
             <p> To </p>
-            <%= f.text_field :end_date, class: "datepicker end_date", value: @end_date, placeholder: "dd/mm/yyyy" %>
+            <%= f.input :end_date, class: "datepicker end_date",placeholder: "dd/mm/yyyy", html5: true, as: :date, input_html: {data: {updateprice_target: "enddate", action: "change->updateprice#update"}} %>
             </div>
-            <p> <strong>Total price: <span id="total_price"><%= @total_price %> €</span></strong></p>
+            <%= f.input :price, input_html: { data: {updateprice_target: "price"}} %>
+            <p> <strong>Total price: <span id="total_price"> <%= @total_price %> €</span></strong></p>
             <%= f.submit "Book", class: "btn btn-danger"%>
+            <%#= link_to "Book your car", booking_path(@booking), class:"btn btn-primary" %>
           </div>
-
-        <% end%>
+        <% end %>
 
       </div>
     </div>
@@ -104,6 +99,7 @@
 <% content_for(:after_js) do %>
 
 
+<!-- JAVA SCRIPT FOR THE CALCULATE RENT PER DAY -->
   <script>
     $(document).ready(function() {
       var handler = Gmaps.build('Google', { markers: { clusterer: undefined }});

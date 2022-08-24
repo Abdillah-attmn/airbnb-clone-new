@@ -5,22 +5,19 @@
       <div class="form-login text-left">
       <h2 class="text-center">My car infos</h2>
         <br>
-        <%= simple_form_for @car do |f| %>
+        <%= simple_form_for(@car) do |f| %>
           <%= f.input :title %>
           <%= f.input :address %>
-          <%= f.input :city %>
-          <%= f.input :country %>
-          <%= f.input :description %>
+          <%= f.input :content %>
           <%= f.input :price %>
           <br>
-          <%= f.input :photo, as: :attachinary%>
+          <%= f.input :photo%>
           <br>
           <h3><strong>Equipments</strong></h3>
           <hr>
           <%= f.button :submit, "Modify your car", class: "btn btn-danger"%>
           <%= link_to "Delete #{@car.title}", car_path(@car),
-              method: :delete,
-              data: { confirm: "Are you sure?" }, class: "btn btn-success"%>
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-success"%>
         <% end %>
       </div>
     </div>
