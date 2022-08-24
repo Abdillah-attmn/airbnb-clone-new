@@ -13,7 +13,7 @@
       <div class="container">
         <h1>Tout roule moins cher avec <strong class=""> Air-Cars </strong>!</h1>
         <p> Les démarches pour réserver une voiture d'occasion Il suffit simplement de rencontrer les garages et concessionnaires près de chez vous.</p>
-        <a class="btn btn-gradient" href="#">Start now</a>
+        <%= link_to "Start now", new_car_path, class:"btn btn-gradient"%>
       </div>
     </div>
 
@@ -21,7 +21,6 @@
           <div class="container">
             <div class="row align-items-start">
               <div class="col">
-
                 <% @cars.each do |car| %>
                   <%= link_to car_path(car), target: "_blank" do %>
                     <div class="card-trip">
@@ -50,32 +49,32 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com" role="button" target="_blank"
         ><i class="fab fa-facebook-f"></i
       ></a>
 
       <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com" role="button" target="_blank"
         ><i class="fab fa-twitter"></i
       ></a>
 
       <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.com/" role="button" target="_blank"
         ><i class="fab fa-google"></i
       ></a>
 
       <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com" role="button" target="_blank"
         ><i class="fab fa-instagram"></i
       ></a>
 
       <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://fr.linkedin.com" role="button" target="_blank"
         ><i class="fab fa-linkedin-in"></i
       ></a>
 
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com" role="button" target="_blank"
         ><i class="fab fa-github"></i
       ></a>
     </section>

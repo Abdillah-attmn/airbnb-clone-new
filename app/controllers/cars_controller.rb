@@ -4,10 +4,10 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
 
-    @markers = @car.geocoded.map do |car|
+    @markers = @flats.geocoded.map do |flat|
       {
-        lat: car.latitude,
-        lng: car.longitude
+        lat: flat.latitude,
+        lng: flat.longitude
       }
     end
   end
@@ -23,11 +23,11 @@ class CarsController < ApplicationController
     unless @checkin.blank? || @checkout.blank?
       from = @checkin.split('/')
       to = @checkout.split('/')
-      start = Date.new(from[2].to_f, from[1].to_f - 1, from[0].to_f)
-      finish = Date.new(to[2].to_f, to[1].to_f - 1, to[0].to_f)
-      nb_days = (finish - start).to_f
-      @total_price = (nb_days * @car.price.to_f).round
-      @total_price = 120
+      #start = Date.new(from[2].to_f, from[1].to_f - 1, from[0].to_f)
+      #finish = Date.new(to[2].to_f, to[1].to_f - 1, to[0].to_f)
+      #nb_days = (finish - start).to_f
+      #@total_price = (@nb_days * @car.price.to_f).round
+      #@total_price = 120
     end
     @bookings = @car.bookings
     firstname = @car.user.firstname
@@ -58,7 +58,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: :see_other, notice: "Your car has been Destroyed"
   end
 
   private

@@ -18,15 +18,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_094427) do
     t.date "start_date"
     t.date "end_date"
     t.bigint "user_id", null: false
-    t.bigint "offer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "car_id", null: false
     t.integer "value"
     t.string "status"
-    t.bigint "car_id", null: false
     t.integer "price"
     t.index ["car_id"], name: "index_bookings_on_car_id"
-    t.index ["offer_id"], name: "index_bookings_on_offer_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -38,12 +36,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_094427) do
     t.datetime "updated_at", null: false
     t.string "photo"
     t.string "address"
-    t.string "city"
-    t.string "country"
     t.float "latitude"
     t.float "longitude"
     t.bigint "user_id", null: false
-    t.string "zipcode"
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
@@ -72,7 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_094427) do
   end
 
   add_foreign_key "bookings", "cars"
-  add_foreign_key "bookings", "cars", column: "offer_id"
   add_foreign_key "bookings", "users"
   add_foreign_key "cars", "users"
   add_foreign_key "reviews", "bookings"
