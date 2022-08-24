@@ -3,6 +3,9 @@
 <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
   <%= f.full_error :confirmation_token %>
+  <% f.input :age, :collection => 18..60, :prompt => "Select your age" %>
+
+
 
   <div class="form-inputs">
     <%= f.input :email,
