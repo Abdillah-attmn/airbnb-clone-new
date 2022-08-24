@@ -4,10 +4,10 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
 
-    @markers = @flats.geocoded.map do |flat|
+    @markers = @cars.geocoded.map do |car|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: car.latitude,
+        lng: car.longitude
       }
     end
   end
@@ -39,7 +39,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
-      redirect_to car_path(@car)
+      redirect_to cars_path
     else
       render :new, status: :unprocessable_entity
     end
