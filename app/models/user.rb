@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   validates :email, presence: true
-
   validates_presence_of :lastname
   validates :firstname, presence: true, uniqueness: { scope: :lastname }
-  validates :photo, presence: true
+  # validates :photo, presence: true
   validates :encrypted_password, presence: true
   has_many :bookings, dependent: :destroy
   has_many :cars
