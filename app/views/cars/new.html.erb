@@ -1,6 +1,6 @@
 <h2 class="text-center">Share your <strong id="red-word">car</strong> with the community. Be <strong id="red-word">fun</strong> and <strong id="red-word">adventury</strong> ! </h2>
 
-<div id="wrapper">
+<div class="container">
   <div class="row">
     <div class="text-left form-login">
       <h2 class="text-center"><strong>Add my car </strong></h2>
@@ -20,18 +20,21 @@
       <h4><strong>EQUIPEMENTS</strong> </h4>
       <br>
       <hr>
-      <%= f.button :submit, "Share my car", class: "btn btn-danger btn-lg"%>
+      <style>
+      .btn-white{
+        color: #fff;
+        border-radius: 25px;
+        text-align: center;
+      }
+      </style>
+      <%= f.button :submit, "Share my car", class: "btn btn-danger btn-lg mb-5 btn-white" %>
 
       <% end %>
     </div>
   </div>
 
-</div>
-</div>
 
-
-<%= content_for(:after_js) do %>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyC8nUa2rua2jKRMY-bKdEW9GxRRh55wtIg"></script>
-<% end %>
-
+  <%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyC8nUa2rua2jKRMY-bKdEW9GxRRh55wtIg"></script>
+  <% end %>
 </div>
