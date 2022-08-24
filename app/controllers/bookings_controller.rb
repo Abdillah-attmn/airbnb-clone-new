@@ -12,9 +12,9 @@ class BookingsController < ApplicationController
       @booking.value = 0
     end
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
-      redirect_to car_path(@car)
+      redirect_to car_path(@car), status: :unprocessable_entity
     end
   end
 

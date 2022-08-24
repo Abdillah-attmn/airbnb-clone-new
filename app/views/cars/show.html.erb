@@ -36,6 +36,9 @@
         <p><strong>Equipments  </strong><i class="fa fa-car fa-lg " aria-hidden="true" ></i></p>
         <%= image_tag @car.photo, class: "equipment" %>
       </div>
+      <div class = "edit-div">
+        <%= link_to "edit a car", edit_car_path(@car), class:"btn btn-primary" %>
+      </div>
 
 <!-- Reviews -->
       <div>
@@ -81,8 +84,9 @@
             <%= f.input :price, input_html: { data: {updateprice_target: "price"}} %>
             <p> <strong>Total price: <span id="total_price"> <%= @total_price %> €</span></strong></p>
             <%= f.submit "Book", class: "btn btn-danger"%>
+            <%#= link_to "Book your car", booking_path(@booking), class:"btn btn-primary" %>
           </div>
-        <% end%>
+        <% end %>
 
       </div>
     </div>
