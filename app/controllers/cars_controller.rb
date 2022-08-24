@@ -3,6 +3,13 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   def index
     @cars = Car.all
+
+    @markers = @car.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
   end
 
   def new
@@ -16,10 +23,10 @@ class CarsController < ApplicationController
     unless @checkin.blank? || @checkout.blank?
       from = @checkin.split('/')
       to = @checkout.split('/')
-      #start = Date.new(from[2].to_f, from[1].to_f - 1, from[0].to_f)
-      #finish = Date.new(to[2].to_f, to[1].to_f - 1, to[0].to_f)
-      #nb_days = (finish - start).to_f
-      #@total_price = (@nb_days * @car.price.to_f).round
+      start = Date.new(from[2].to_f, from[1].to_f - 1, from[0].to_f)
+      finish = Date.new(to[2].to_f, to[1].to_f - 1, to[0].to_f)
+      nb_days = (finish - start).to_f
+      @total_price = (nb_days * @car.price.to_f).round
       @total_price = 120
     end
     @bookings = @car.bookings
