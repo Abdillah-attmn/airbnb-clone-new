@@ -4,7 +4,7 @@ class CreateBooks < ActiveRecord::Migration[7.0]
       t.date :start_date
       t.date :end_date
       t.references :user, null: false, foreign_key: true
-      t.references :offer, null: false, foreign_key: true
+      t.references :car, null: false, foreign_key: true
 
       t.timestamps
     end

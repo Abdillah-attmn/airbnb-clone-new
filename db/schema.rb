@@ -18,9 +18,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_24_094427) do
     t.date "start_date"
     t.date "end_date"
     t.bigint "user_id", null: false
+    t.bigint "car_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "car_id", null: false
     t.integer "value"
     t.string "status"
     t.integer "price"
