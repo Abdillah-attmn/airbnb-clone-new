@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @bookings = policy_scope(Booking)
     @my_bookings = @bookings.where(user: current_user)
     user_car = current_user.cars
-    @my_car_bookings = user_car.map { |car| car.bookings }
+    @my_car_bookings = user_car.map(car.bookings)
   end
 
   # GET /Bookings/:id
