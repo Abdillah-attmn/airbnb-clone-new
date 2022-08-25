@@ -17,7 +17,10 @@ class BookingsController < ApplicationController
 
   # GET /Bookings
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking)
+    @my_bookings = @bookings.where(user: current_user)
+    user_car = current_user.cars
+    @my_car_bookings = user_car.map(car.bookings
   end
 
   # GET /Bookings/:id
