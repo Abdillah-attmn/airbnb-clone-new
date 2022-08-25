@@ -33,15 +33,34 @@
           <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
             <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
           </div>
-          
-          
-          
-          
-          
-          
-          
-<!-- Code Ancien (devise)--> 
-          
+
+
+
+
+
+
+
+<!-- Code Ancien (devise)-->
+
+
+          <--! Code Merouane -->
+        </div>
+      </div>
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="http://127.0.0.1:3000/" rel="dofollow">Air-Car</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Crée un compte </span>
+
+
+
+
+
+<div class='container'>
+
   <div class='row'>
     <div class='col'>
       <%= simple_form_for(resource, as: resource_name,
@@ -66,71 +85,25 @@
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                       input_html: { autocomplete: "new-password" } %>
-          
-          
-          
-          
-          <--! Code Merouane -->
         </div>
-      </div>
-      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
-        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <h1><a href="http://127.0.0.1:3000/" rel="dofollow">Air-Car</a></h1>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class:'btn btn-primary' %>
         </div>
-        <div class="formbg-outer">
-          <div class="formbg">
-            <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Crée un compte </span>
-              <form id="stripe-login">
-                <div class="field padding-bottom--24">
-                  <label for="email">Email</label>
-                  <input type="email" name="email">
+      <% end %>
 
-                  <label for="email">Nom de famille</label>
-                  <input type="email" name="email">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
 
-                  <label for="email">Prénom</label>
-                  <input type="email" name="email">
-                </div>
 
-                <div class="field padding-bottom--24">
-                  <div class="grid--50-50">
-                    <label for="password">Mot de passe</label>
-                    <div class="reset-pass">
-                    </div>
-                  </div>
-                  <input type="password" name="password">
-                </div>
 
-                  <div class="field padding-bottom--24">
-                  <div class="grid--50-50">
-                    <label for="password">Nouveau mot de passe</label>
-                    <div class="reset-pass">
-                    </div>
-                  </div>
-                  <input type="password" name="password">
-                </div>
 
-                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                  <label for="checkbox">
-                    <input type="checkbox" name="checkbox">  Vous acceptez nos Conditions générales
-                  </label>
-                </div>
-                <div class="field padding-bottom--24">
-                  <input type="submit" name="submit" value="Inscrire">
-                </div>
-                <div class="field">
-                  <a class="ssolink" href="#">Utilisez plutôt l'authentification unique (Google)</a>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="footer-link padding-top--24">
-            <span>Vous n'avez pas de compte ? <a href="">S'inscrire</a></span>
-            <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-              <span><a href="#">© Air-Car</a></span>
-              <span><a href="#">Contact</a></span>
-              <span><a href="#">Confidentialité & conditions</a></span>
+
+
+
+
             </div>
           </div>
         </div>
