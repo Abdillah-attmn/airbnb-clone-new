@@ -1,7 +1,6 @@
 <!-- CAR -->
 
 <h1 class="text-center"><%= @car.title %></h1>
-
 <div class="container">
  <div class="boxe">
   <div class="top">
@@ -42,9 +41,16 @@
         <%= cl_image_tag @car.photocar.key, class: "equipment" %>
       </div>
 
+
       <div class = "edit-div my-2">
-        <%= link_to "Modifier la voiture", edit_car_path(@car), class:"btn btn-primary" %>
+        <%= link_to "Modifier la voiture", edit_car_path(@car), class:"btn btn-primary" if policy(@car).edit? %>
+        <%= link_to "Delete #{@car.title}", car_path(@car),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-success" if policy(@car).destroy? %>
       </div>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <!-- Reviews -->
       <div>

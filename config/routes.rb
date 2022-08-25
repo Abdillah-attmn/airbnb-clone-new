@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
     get '/booking_loueur', to: 'booking#list'  # /bookings/lists
   end
+
+  get '/bookings/booking_renter', to: 'bookings#list_renter'  # /bookings/lists
 end

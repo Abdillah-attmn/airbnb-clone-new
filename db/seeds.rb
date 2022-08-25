@@ -24,9 +24,10 @@ User.destroy_all
 
     booking = Booking.create!(start_date: Faker::Date.in_date_period,
                               end_date: Faker::Date.in_date_period,
-                              value: (0..5).to_a.sample, status: ["Pending guest request", "Pending host validation",
-                                                                   "Confirmed", "Canceled"].sample,
-                              car: car, user: user)
-    Review.create!(rating: (0..5).to_a.sample, content: "It's good", booking: booking )
+                              status: ["Pending guest request", "Pending host validation",
+                                                              "Confirmed", "Canceled"].sample,
+                              car: car)
+    booking.value = car.price * (booking[:end_date] - booking[:start_date])
+    Review.create!(rating: (0..5).to_a.sample, content: "It's good", booking: booking)
   end
 end
