@@ -7,8 +7,16 @@ class CarPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    create?
+  end
+
   def update?
     record.user == user
+  end
+
+  def edit?
+    update?
   end
 
   def destroy?
@@ -17,8 +25,8 @@ class CarPolicy < ApplicationPolicy
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.where(user: user)
-    end
+    # def resolve
+    #   scope.all
+    # end
   end
 end
