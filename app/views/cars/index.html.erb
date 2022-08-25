@@ -11,7 +11,11 @@
 
                 <div class="card ">
                   <div class="card__header">
-                    <img src="<%= car.photo %>" alt="card__image" class="card__image" width="600">
+                  <% unless car.photocar.attached? %>
+                    <img src="<%= car.photocar %>" alt="card__image" class="card__image" width="600">
+                    <% else %>
+                    <%= cl_image_tag car.photocar.key, height: 300, width: 400, crop: :fill %>
+                  <% end %>
                   </div>
 
                   <div class="card__body">
