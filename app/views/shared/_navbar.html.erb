@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to "http://127.0.0.1:3000/", class: "navbar-brand" do %>
       <%= image_tag "https://previews.123rf.com/images/helloweenn/helloweenn1612/helloweenn161200021/67973090-louer-logo-mod%C3%A8le-de-conception-de-voitures-eps-10.jpg" %>
     <% end %>
 
@@ -22,14 +22,14 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-light" %>
+              <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-outline-warning" %>
             </div>
 
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: " btn btn-light" %>
-            <%= link_to "logout", destroy_user_session_path, class:' btn btn-light'  %>
+            <%= link_to "Login", new_user_session_path, class: " btn btn-outline-warning" %>
+            <%#= link_to "logout", destroy_user_session_path, class: "btn btn-outline-warning" %>
           </li>
         <% end %>
       </ul>

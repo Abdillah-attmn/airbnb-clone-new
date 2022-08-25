@@ -26,6 +26,8 @@
 .equipment {
   border-radius: 5px;
   object-fit: fill;
+  border-radius: 10px;
+  box-shadow: 1px 2px 15px #212529;
   width : 500px;
   height : 350px;
 }
@@ -33,4 +35,57 @@
 .font-weight-bold {
   color: rgb(0, 0, 0);
   font-weight: bold;
+  font-size: 25px;
+}
+
+b, strong {
+  padding: 2px;
+  font-weight: bolder;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.mx-1 {
+  /* margin-right: 0.25rem !important; */
+  /* margin-left: 0.25rem !important; */
+  border-radius: 5px;
+}
+
+.form-control {
+  display: block;
+  width: 500px;
+}
+
+.Publier {
+  text-align: center;
+}
+
+.EQUIPEMENTS {
+  text-align: center;
+}
+
+.avis {
+  color: #fff;
+}
+
+.calcprice {
+  display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 0.100rem 2.25rem 0.100rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0E0000;
+    background-color: #F4F4F4;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border-radius: 2px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }

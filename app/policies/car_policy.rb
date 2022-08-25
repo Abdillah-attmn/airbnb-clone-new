@@ -7,16 +7,8 @@ class CarPolicy < ApplicationPolicy
     true
   end
 
-  def new?
-    create?
-  end
-
   def update?
     record.user == user || user.admin
-  end
-
-  def edit?
-    update?
   end
 
   def destroy?
