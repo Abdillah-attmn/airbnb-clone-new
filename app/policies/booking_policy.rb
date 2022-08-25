@@ -2,7 +2,7 @@ class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      user.admin ? scope.all : scope.where(user: user)
+      scope.all
     end
   end
 
@@ -15,10 +15,10 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user || user.admin
+    record.user == user
   end
 
   def destroy?
-    record.user == user || user.admin
+    record.user == user
   end
 end

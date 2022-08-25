@@ -9,13 +9,11 @@
   <ul class="list-unstyled">
 
     <% @bookings.each do |booking| %>
-      <% if booking.checkin_on > Date.today %>
+      <% if booking.start_date > Date.today %>
         <% if booking.status == "Pending host validation" %>
         <li class="dashboard">
-        <%= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
           <div class='product-body'>
             <h2><%= booking.car.title %></h2>
-            <p>City: <strong><%= booking.car.city %></strong></p>
             <p>Address: <strong><%= booking.car.address %></strong></p>
             <p>Total price: <strong><%= booking.value %> €</strong></p>
           </div>
@@ -30,10 +28,8 @@
 
       <% if booking.status == "Confirmed" %>
       <li class="dashboard">
-      <%= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
       <div class='product-body'>
         <h2><%= booking.car.title %></h2>
-        <p>City: <strong><%= booking.car.city %></strong></p>
         <p>Address: <strong><%= booking.car.address %></strong></p>
         <p>Total price: <strong><%= booking.value %> €</strong></p>
       </div>
@@ -48,10 +44,8 @@
 
       <% if booking.status == "Canceled" %>
       <li class="dashboard">
-      <%= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
       <div class='product-body'>
         <h2><%= booking.car.title %></h2>
-        <p>City: <strong><%= booking.car.city %></strong></p>
         <p>Address: <strong><%= booking.car.address %></strong></p>
         <p>Total price: <strong><%= booking.value %> €</strong></p>
       </div>
@@ -80,10 +74,8 @@
       <% if booking.start_date <= Date.today %>
       <% if booking.status == "Confirmed" %>
      <li class="dashboard">
-      <%= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
       <div class='product-body'>
         <h2><%= booking.car.title %></h2>
-        <p>City: <strong><%= booking.car.city %></strong></p>
         <p>Address: <strong><%= booking.car.address %></strong></p>
         <p>Total price: <strong><%= booking.value %> €</strong></p>
       </div>
