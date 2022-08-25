@@ -4,10 +4,10 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
 
-    @markers = @flats.geocoded.map do |flat|
+    @markers = @cars.geocoded.map do |car|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: car.latitude,
+        lng: car.longitude
       }
     end
   end
@@ -57,6 +57,10 @@ class CarsController < ApplicationController
   end
 
   def destroy
+    @car.bookings.each do |booking|
+      booking.review.destroy
+    end
+    @car.bookings.destroy_all
     @car.destroy
     redirect_to root_path, status: :see_other, notice: "Your car has been Destroyed"
   end
