@@ -14,7 +14,7 @@ User.destroy_all
 5.times do
   user = User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name,
                       email: Faker::Internet.email, photo: Faker::Avatar.image,
-                      password: "password")
+                      password: Faker::Internet.password)
   2.times do
     car = Car.create!(title: Faker::Vehicle.make_and_model, content: Faker::Vehicle.fuel_type,
                       photo: "https://source.unsplash.com/random/?car",
