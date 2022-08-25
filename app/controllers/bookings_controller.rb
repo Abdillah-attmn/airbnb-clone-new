@@ -1,54 +1,47 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[show update destroy]
 
+  # POST /bookings
   def create
-    @car = Car.find(params[:offer_id])
-    @booking = booking.new(booking_params)
-    @booking.car = @car
+    # raise
+    @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.status = "Pending host validation"
-    if @booking.end_date && @booking.start_date
-      @booking.value = (@booking.end_date - @booking.start_date).to_f * @booking.car.price.to_f
-    else
-      @booking.value = 0
-    end
-    if @booking.save
+    @booking.car = Car.find(params[:car_id])
+    @booking.status = Booking::PENDING[:pending_host]
+    if @booking.save!
       redirect_to bookings_path
     else
       redirect_to car_path(@car), status: :unprocessable_entity
     end
   end
 
+  # GET /Bookings
   def index
-    if current_user
-    @bookings = Booking.where(user_id: current_user.id)
-    @review = Review.new
-    else
-      redirect_to root_path
-    end
+    @bookings = Booking.all
   end
 
+  # GET /Bookings/:id
   def show
-    set_booking
     @car = @booking.car
   end
 
   def update
-    set_booking
-    @booking.status = "Pending host validation"
+    @booking.status = Booking::PENDING[:pending_host]
     @booking.save!
     redirect_to booking_path(@booking)
   end
 
   def destroy
-    set_booking
+    @review = @booking.review
+    @review.destroy
     @booking.destroy
-    redirect_to root_path
+    redirect_to bookings_path, status: :see_other
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :value, :status)
+    params.require(:booking).permit(:start_date, :end_date, :value)
   end
 
   def set_booking
