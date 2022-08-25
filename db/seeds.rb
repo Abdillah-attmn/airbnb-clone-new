@@ -14,7 +14,7 @@ User.destroy_all
 5.times do
   user = User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name,
                       email: Faker::Internet.email, photo: Faker::Avatar.image,
-                      password: "password")
+                      password: Faker::Internet.password)
   2.times do
     car = Car.create!(title: Faker::Vehicle.make_and_model, content: Faker::Vehicle.fuel_type,
                       photo: "https://source.unsplash.com/random/?car",
@@ -26,7 +26,7 @@ User.destroy_all
                               end_date: Faker::Date.in_date_period,
                               value: (0..5).to_a.sample, status: ["Pending guest request", "Pending host validation",
                                                                    "Confirmed", "Canceled"].sample,
-                              car: car)
-    Review.create!(rating: (0..5).to_a.sample, content: "It's good", booking: booking)
+                              car: car, user: user)
+    Review.create!(rating: (0..5).to_a.sample, content: "It's good", booking: booking )
   end
 end
