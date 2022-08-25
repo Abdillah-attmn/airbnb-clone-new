@@ -24,6 +24,10 @@ class BookingsController < ApplicationController
     @my_car_bookings = user_car.map { |car| car.bookings }
   end
 
+  def list_renter
+    index
+  end
+
   # GET /Bookings/:id
   def show
     authorize @booking
