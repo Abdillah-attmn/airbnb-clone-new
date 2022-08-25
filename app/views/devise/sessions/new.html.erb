@@ -33,30 +33,17 @@
           </div>
         </div>
 
-        
-        
-        
+
+
+
         <!-- Code ancien (devise) -->
-<div class='container'>
-  <h2>Log in</h2>
-  <div class='row'>
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-       <% end>
-        
-        
-        
-        
+
+
+
+
         <!-- Code Merouane -->
       </div>
+
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
           <h1><a href="http://127.0.0.1:3000/" rel="dofollow">Air-Car</a></h1>
@@ -65,32 +52,34 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Connectez-vous à votre compte</span>
-              <form id="stripe-login">
-                <div class="field padding-bottom--24">
-                  <label for="email">Email</label>
-                  <input type="email" name="email">
-                </div>
-                <div class="field padding-bottom--24">
-                  <div class="grid--50-50">
-                    <label for="password">Mot de passe</label>
-                    <div class="reset-pass">
-                      <a href="#">Mot de passe oublié ?</a>
-                    </div>
-                  </div>
-                  <input type="password" name="password">
-                </div>
-                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                  <label for="checkbox">
-                    <input type="checkbox" name="checkbox"> Restez connecté
-                  </label>
-                </div>
-                <div class="field padding-bottom--24">
-                  <input type="submit" name="submit" value="Continue">
-                </div>
-                <div class="field">
-                  <a class="ssolink" href="#">Utilisez plutôt l'authentification unique (Google)</a>
-                </div>
-              </form>
+
+
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+                        <%= f.label :email %><br />
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+
+
+                        <%= f.label :password %><br />
+                        <%= f.password_field :password, autocomplete: "current-password" %>
+
+
+                      <% if devise_mapping.rememberable? %>
+
+                          <%= f.check_box :remember_me %>
+                          <%= f.label :remember_me %>
+
+                      <% end %>
+
+
+                        <%= f.submit "Log in", class:'btn btn-primary'%>
+
+                    <% end %>
+                  <%= render "devise/shared/links" %>
+
+
+
             </div>
           </div>
           <div class="footer-link padding-top--24">
