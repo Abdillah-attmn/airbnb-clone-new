@@ -42,9 +42,13 @@
         <%= image_tag @car.photo, class: "equipment" %>
       </div>
 
+
       <div class = "edit-div my-2">
-        <%= link_to "Modifier la voiture", edit_car_path(@car), class:"btn btn-primary" %>
+        <%= link_to "Modifier la voiture", edit_car_path(@car), class:"btn btn-primary" if policy(@car).edit? %>
+        <%= link_to "Delete #{@car.title}", car_path(@car),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-success" if policy(@car).destroy? %>
       </div>
+
 
 <!-- Reviews -->
       <div>

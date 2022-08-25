@@ -16,8 +16,6 @@
           <h3><strong>Equipments</strong></h3>
           <hr>
           <%= f.button :submit, "Modify your car", class: "btn btn-danger"%>
-          <%= link_to "Delete #{@car.title}", car_path(@car),
-              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-success"%>
         <% end %>
       </div>
     </div>
