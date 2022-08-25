@@ -22,7 +22,7 @@ User.destroy_all
                       longitude: Faker::Address.longitude, price: (120..130).to_a.sample,
                       user: user)
 
-    booking = Booking.create!(start_date: Faker::Date.in_date_period,
+    booking = Booking.create!(user: car.user, start_date: Faker::Date.in_date_period,
                               end_date: Faker::Date.in_date_period,
                               status: ["Pending guest request", "Pending host validation",
                                                               "Confirmed", "Canceled"].sample,

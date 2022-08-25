@@ -21,11 +21,11 @@ class BookingsController < ApplicationController
     @bookings = policy_scope(Booking)
     @my_bookings = @bookings.where(user: current_user)
     user_car = current_user.cars
-    @my_car_bookings = user_car.map { |car| car.bookings }
+    return @my_car_bookings = user_car.map { |car| car.bookings }
   end
 
   def list_renter
-    index
+    @my_car_bookings = index
   end
 
   # GET /Bookings/:id
@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
   def destroy
     authorize @booking
     @review = @booking.review
-    @review.destroy
+    @review.destroy unless @review.nil?
     @booking.destroy
     redirect_to bookings_path, status: :see_other
   end
