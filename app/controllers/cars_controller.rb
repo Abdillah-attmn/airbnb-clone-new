@@ -4,7 +4,7 @@ class CarsController < ApplicationController
 
   # GET /cars
   def index
-    @cars = Car.all
+    @cars = Car.geocoded
   end
 
   # GET /cars/new
@@ -16,6 +16,12 @@ class CarsController < ApplicationController
   # GET /cars/:id
   def show
     @booking = Booking.new
+    @markers = [
+      {
+        lat: @car.latitude,
+        lng: @car.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {car: @car}),
+      }]
     @bookings = @car.bookings
     authorize @car
   end
