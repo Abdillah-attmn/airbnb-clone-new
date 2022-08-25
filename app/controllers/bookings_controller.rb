@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.car = Car.find(params[:car_id])
     @booking.status = Booking::PENDING[:pending_host]
+    authorize @booking
     if @booking.save!
       redirect_to bookings_path
     else
@@ -17,21 +18,29 @@ class BookingsController < ApplicationController
 
   # GET /Bookings
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking)
+    @my_bookings = @bookings.where(user: current_user)
+    user_car = current_user.cars
+    @my_car_bookings = user_car.map do |car|
+      car.bookings
+    end
   end
 
   # GET /Bookings/:id
   def show
     @car = @booking.car
+    authorize @booking
   end
 
   def update
+    authorize @booking
     @booking.status = Booking::PENDING[:pending_host]
     @booking.save!
     redirect_to booking_path(@booking)
   end
 
   def destroy
+    authorize @booking
     @review = @booking.review
     @review.destroy
     @booking.destroy
