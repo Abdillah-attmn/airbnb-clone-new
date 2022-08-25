@@ -61,7 +61,11 @@
                 <% (5- booking.review.rating).times do %>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                 <% end %>
-                <p> <%= booking.review.content %> </p>
+
+                <div class="avis">
+                    <%= booking.review.content %>
+                </div>
+
               </div>
             </div>
             </li>
@@ -87,7 +91,7 @@
             <p class="font-weight-bold"> Jusqu'à </p>
             <%= f.input :end_date, class: "datepicker end_date",placeholder: "dd/mm/yyyy", html5: true, as: :date, input_html: {data: {updateprice_target: "enddate", action: "change->updateprice#update"}} %>
             </div>
-            <%= f.input :value, input_html: { data: {updateprice_target: "price"}} %>
+            <div class="calcprice"><%= f.input :value, input_html: { data: {updateprice_target: "price"}} %></div>
             <%= f.submit "Réserver", class: "btn btn-danger"%>
             <%#= link_to "Book your car", booking_path(@booking), class:"btn btn-primary" %>
           </div>
