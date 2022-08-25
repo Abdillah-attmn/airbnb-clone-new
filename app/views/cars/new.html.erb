@@ -1,23 +1,18 @@
-<h2 class="text-center">Share your <strong id="red-word">car</strong> with the community. Be <strong id="red-word">fun</strong> and <strong id="red-word">adventury</strong> ! </h2>
+<h2 class="text-center">Partagez votre <strong id="red-word">voiture</strong> avec les autres. Etre <strong id="red-word">heureux</strong> et <strong id="red-word">Cool</strong> ! </h2>
 
 <div class="container">
   <div class="row">
     <div class="text-left form-login">
-      <h2 class="text-center"><strong>Add my car </strong></h2>
+      <h2 class="text-center"><strong>Ajouter ma voiture </strong></h2>
       <br>
       <%= simple_form_for @car do |f| %>
       <%= f.error_notification %>
-      <%= f.input :title, placeholder: "Warm car with silk sheets", :label_html => { :class => "label-css"} %>
-      <%= f.input :address, label: "My lovely nest is located at this address", placeholder: "36 avenue du calin" %>
-      <%= f.input :city, placeholder: "Bisouville" %>
-      <%#= f.input :country %>
-      <%= f.input :content, label: "A sexy description for your car", placeholder: "My car is a mercides car with a good engin and so speed as well as thr color is so sexy and (or more)" %>
-      <%= f.input :price, label: "Price per day in €", placeholder: "48" %>
+      <%= f.input :title, placeholder: "Ecrire un Titre", :label_html => { :class => "label-css"} %>
+      <%= f.input :address, label: "Ecrivez votre adresse", placeholder: "36 rue du la gard" %>
+      <%= f.input :content, label: "Ecrire une description pour votre voiture", placeholder: "Ma voiture est une voiture mercedes avec un bon moteur ..." %>
+      <%= f.input :price, label: "Prix par jour en €", placeholder: "48 €" %>
       <br>
-      <%= f.input :photo, label: "Choose a nice picture for your car" %>
-      <br>
-      <hr>
-      <h4><strong>EQUIPEMENTS</strong> </h4>
+      <%= f.file_field :image, class: "form-control", label: "Choisissez une belle photo pour votre voiture" %>
       <br>
       <hr>
       <style>
@@ -27,8 +22,10 @@
         text-align: center;
       }
       </style>
-      <%= f.button :submit, "Share my car", class: "btn btn-danger btn-lg mb-5 btn-white" %>
 
+      <div class="Publier">
+          <%= f.button :submit, "Publier la voiture", class: "btn btn-danger btn-lg mb-5 btn-white text-center" %>
+      </div>
       <% end %>
     </div>
   </div>

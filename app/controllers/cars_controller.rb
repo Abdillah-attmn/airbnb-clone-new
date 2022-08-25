@@ -1,53 +1,51 @@
 require 'date'
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
+
+  # GET /cars
   def index
     @cars = Car.geocoded
   end
 
+  # GET /cars/new
   def new
     @car = Car.new
+    authorize @car
   end
 
+  # GET /cars/:id
   def show
     @booking = Booking.new
-    @checkin = params['start_date']
-    @checkout = params['end_date']
     @markers = [
       {
         lat: @car.latitude,
         lng: @car.longitude,
         info_window: render_to_string(partial: "info_window", locals: {car: @car}),
       }]
-    unless @checkin.blank? || @checkout.blank?
-      from = @checkin.split('/')
-      to = @checkout.split('/')
-      #start = Date.new(from[2].to_f, from[1].to_f - 1, from[0].to_f)
-      #finish = Date.new(to[2].to_f, to[1].to_f - 1, to[0].to_f)
-      #nb_days = (finish - start).to_f
-      #@total_price = (@nb_days * @car.price.to_f).round
-      #@total_price = 120
-    end
     @bookings = @car.bookings
-    firstname = @car.user.firstname
-    lastname = @car.user.lastname.upcase
-    @alert_message = "You are viewing the car of #{firstname} #{lastname}"
+    authorize @car
   end
 
+  # POST /cars
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-    if @car.save
-      redirect_to car_path(@car)
+    authorize @car
+    if @car.save!
+      redirect_to cars_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit; end
+  # GET /cars/:id/edit
+  def edit
+    authorize @car
+  end
 
+  # PATCH /cars/:id
   def update
-    set_car
+    authorize @car
     if @car.update(car_params)
       redirect_to car_path(@car)
     else
@@ -55,7 +53,9 @@ class CarsController < ApplicationController
     end
   end
 
+  # DELETE /cars/:id
   def destroy
+    authorize @car
     @car.bookings.each do |booking|
       booking.review.destroy
     end
