@@ -1,4 +1,5 @@
 
+
 <!-- the new sign up -->
 <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
@@ -32,6 +33,44 @@
           <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
             <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
           </div>
+          
+          
+          
+          
+          
+          
+          
+<!-- Code Ancien (devise)--> 
+          
+  <div class='row'>
+    <div class='col'>
+      <%= simple_form_for(resource, as: resource_name,
+                          url: registration_path(resource_name),
+                          data: {turbo: false}) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :firstname,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "first name" }%>
+          <%= f.input :lastname,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "last name" }%>
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          
+          
+          
+          
+          <--! Code Merouane -->
         </div>
       </div>
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">

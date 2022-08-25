@@ -33,6 +33,7 @@
       <p class="text-white"> <i class="fa fa-map-marker mx-1" aria-hidden="true"></i><%= @car.address %></p>
        <p class="my-2"> <strong>Prix:</strong> </p>
       <p class="text-white"> <i class="fa fa-eur" aria-hidden="true"></i><%= @car.price %> € Par jour</p>
+
       <p> <strong>Description:</strong> </p>
       <p class="text-white"><%= @car.content %></p>
 
@@ -52,7 +53,6 @@
          <% if booking.review %>
             <li class="list-unstyled">
             <div class="review-chat">
-              <%#= cl_image_tag booking.user.photo.path, width: 50, height: 50, crop: :thumb, gravity: :face, class: "avatar"  %>
               <div class="review-comment">
                 <% booking.review.rating.times do %>
                 <i class="fa fa-star" aria-hidden="true" ></i>
