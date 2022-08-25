@@ -34,3 +34,12 @@
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}

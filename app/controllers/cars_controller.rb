@@ -2,14 +2,7 @@ require 'date'
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
   def index
-    @cars = Car.all
-
-    @markers = @cars.geocoded.map do |car|
-      {
-        lat: car.latitude,
-        lng: car.longitude
-      }
-    end
+    @cars = Car.geocoded
   end
 
   def new
@@ -20,6 +13,12 @@ class CarsController < ApplicationController
     @booking = Booking.new
     @checkin = params['start_date']
     @checkout = params['end_date']
+    @markers = [
+      {
+        lat: @car.latitude,
+        lng: @car.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {car: @car}),
+      }]
     unless @checkin.blank? || @checkout.blank?
       from = @checkin.split('/')
       to = @checkout.split('/')
