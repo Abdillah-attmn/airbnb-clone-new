@@ -8,7 +8,7 @@
     <div class ="photo-row">
       <div class="col-xs-12 col-sm-6">
         <div class="card showmaincard"
-        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @car.photo %>')">
+        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= @car.photocar %>')">
         </div>
       </div>
 
@@ -38,7 +38,7 @@
 
       <div class = "equipment-div">
         <p><strong>Equipments  </strong><i class="fa fa-car fa-lg " aria-hidden="true" ></i></p>
-        <%= image_tag @car.photo, class: "equipment" %>
+        <%= cl_image_tag @car.photocar.key, class: "equipment" %>
       </div>
 
 

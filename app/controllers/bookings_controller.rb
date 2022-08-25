@@ -32,10 +32,13 @@ class BookingsController < ApplicationController
   def show
     authorize @booking
     @car = @booking.car
+    authorize @booking
   end
 
   def update
     authorize @booking
+
+    @booking.status = Booking::PENDING[:pending_host]
     @booking.status = Booking::PENDING[:confirmed]
     @booking.save!
     redirect_to booking_path(@booking)
