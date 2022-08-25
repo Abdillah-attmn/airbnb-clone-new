@@ -1,45 +1,83 @@
+    <!-- research bar -->
+      <div class="containerSearch">
+        <input type="text" placeholder="Search...">
+        <div class="search"></div>
+      </div>
+    <!-- research bar-->
 
-<form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
-  <div class="search-form-control form-outline">
-    <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-    <button type="button" class="btn btn-primary">
-      <i class="fas fa-search"></i> Search
-    </button>
-  </div>
-</form>
 
     <!-- Banner -->
     <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.enterprise.com/content/dam/ent-brand/GettyImages-453470317_1920x1080.jpg);">
       <div class="container">
-        <h1>Tout roule moins cher avec <strong class=""> Air-Cars </strong>!</h1>
+        <h1>Tout roule moins cher avec <strong class="text-warning"> Air-Cars </strong>!</h1>
         <p> Les démarches pour réserver une voiture d'occasion Il suffit simplement de rencontrer les garages et concessionnaires près de chez vous.</p>
-        <%= link_to "Start now", new_car_path, class:"btn btn-gradient"%>
+        <%= link_to "Start now", new_car_path, class:"rounded-pill btn btn-inverse btn-warning btn-lg text-white "%>
       </div>
     </div>
+    <!-- Banner finished -->
 
-    <!-- Mes cartes -->
+<!-- Mes cartes -->
           <div class="container">
-            <div class="row align-items-start">
-              <div class="col">
-                <% @cars.each do |car| %>
+               <% @cars.each do |car| %>
                   <%= link_to car_path(car), target: "_blank" do %>
-                    <div class="card-trip">
-                      <img src=" <%= car.photo %> "/>
-                      <div class="card-trip-infos">
-                        <div>
-                          <h2><%= car.title %></h2>
-                          <p> <%= car.content %></p>
-                        </div>
-                        <h2 class="card-trip-pricing"><%= car.price %> €</h2>
-                        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <div class="box">
+                <div class="card ">
+                 <div class="top">
+                  <div class="card__header">
+                    <img src="<%= car.photo %>" alt="card__image" class="card__image" width="600">
+                    <span><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i></span>
+                  </div>
+                 </div>
+
+                  <div class="card__body">
+                    <span class="tag tag-red">Automobile</span>
+                    <h4><%= car.title %></h4>
+                    <p><%= car.content %></p>
+                  </div>
+
+                  <div class="bottom">
+                    <div class="advants">
+
+                      <div>
+                        <span>Places</span>
+                        <div><i class="fas fa-chair"></i><span>3</span></div>
+                      </div>
+
+                      <div>
+                        <span>Consommation</span>
+                        <div><i class="fas fa-oil-can"></i><span>3 L</span></div>
+                      </div>
+
+                       <div>
+                        <span>kilométrage</span>
+                        <div><i class="fas fa-car"></i><span>3 Km</span></div>
+                      </div>
+
+                    </div>
+
+                    <div class="price">
+                      <span>A louer par Jour</span>
+                      <span><%= car.price %> €</span>
+                    </div>
+                  </div>
+
+
+                  <div class="card__footer">
+                    <div class="user">
+                      <img src="https://i.pravatar.cc/40?img=3" alt="user__image" class="user__image">
+                      <div class="user__info">
+                        <h5>John Doe</h5>
+                        <small>2j ago</small>
                       </div>
                     </div>
-                  <% end %>
-                <% end %>
-
+                  </div>
+                </div>
               </div>
-            </div>
+                <% end %>
+               <% end %>
           </div>
+<!-- card finished -->
+
 
 
 <!-- Footer -->
@@ -49,80 +87,59 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-primary btn-floating m-1 " href="https://www.facebook.com" role="button" target="_blank"
         ><i class="fab fa-facebook-f"></i
       ></a>
 
       <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-primary btn-floating m-1 " href="https://twitter.com" role="button" target="_blank"
         ><i class="fab fa-twitter"></i
       ></a>
 
       <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.com/" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-danger btn-floating m-1 " href="https://www.google.com/" role="button" target="_blank"
         ><i class="fab fa-google"></i
       ></a>
 
       <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-info btn-floating m-1 " href="https://www.instagram.com" role="button" target="_blank"
         ><i class="fab fa-instagram"></i
       ></a>
 
       <!-- Linkedin -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://fr.linkedin.com" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-warning btn-floating m-1" href="https://fr.linkedin.com" role="button" target="_blank"
         ><i class="fab fa-linkedin-in"></i
       ></a>
 
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com" role="button" target="_blank"
+      <a class="btn btn-light btn-outline-success btn-floating m-1" href="https://github.com" role="button" target="_blank"
         ><i class="fab fa-github"></i
       ></a>
     </section>
     <!-- Section: Social media -->
 
     <!-- Section: Form -->
-    <section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <p class="pt-2">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example21" class="form-control" />
-              <label class="form-label" for="form5Example21">Email address</label>
-            </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
-              Subscribe
-            </button>
-          </div>
-          <!--Grid column-->
+      <div class="subscribe">
+        <h2 class="subscribe__title">Restons en contact</h2>
+        <p class="subscribe__copy">Abonnez-vous pour vous tenir au courant des dernières nouvelles et des mises à jour passionnantes. Nous nous engageons à ne pas vous spammer !</p>
+        <div class="form">
+      <input type="email" class="form__email" placeholder="Enter your email address" />
+      <button class="form__button">Envoyer</button>
         </div>
-        <!--Grid row-->
-      </form>
-    </section>
+        <div class="notice">
+          <input type="checkbox">
+          <span class="notice__copy">J'accepte que mon adresse e-mail soit stockée et utilisée pour recevoir la newsletter mensuelle.</span>
+        </div>
+      </div>
     <!-- Section: Form -->
 
     <!-- Section: Text -->
-    <section class="mb-4">
+    <section class="mb-3">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-        eum harum corrupti dicta, aliquam sequi voluptate quas.
+        Vous avez loué une voiture chez Air-car.com pendant
+        l'épidémie de coronavirus ? Voici les dernières informations
+        sur ce que vous pouvez faire si vous souhaitez réserver une
+        voiture ou si vous devez modifier ou annuler vos projets de voyage.
       </p>
     </section>
     <!-- Section: Text -->
@@ -132,84 +149,80 @@
       <!--Grid row-->
       <div class="row">
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
+        <div class="col mx-5 my-3">
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-white">Home</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-white">Docs</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-white">Examples</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-white">Voitures</a>
             </li>
           </ul>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
+        <div class="col mx-5 my-3">
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-white">Change region</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-white">Privacy Notice</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-white">Cookies</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-white">Terms & Conditions</a>
             </li>
           </ul>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
+        <div class="col mx-5 my-3">
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-white">Help</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-white">Modern Slavery Statement</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-white">How we work</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-white">Careers </a>
             </li>
           </ul>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
+        <div class="col mx-5 my-3">
 
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="#!" class="text-white">Link 1</a>
+              <a href="#!" class="text-white">Marketplace</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 2</a>
+              <a href="#!" class="text-white">Enquiry</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 3</a>
+              <a href="#!" class="text-white">Partner</a>
             </li>
             <li>
-              <a href="#!" class="text-white">Link 4</a>
+              <a href="#!" class="text-white">Affiliate Programme</a>
             </li>
           </ul>
         </div>
@@ -222,9 +235,9 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  <div class="text-center p-3 text-white ">
+    © 2022 Copyright:
+    <a class="text-white" href="#">@Merouane @Pascal @Abdillah</a>
   </div>
   <!-- Copyright -->
 </footer>

@@ -26,6 +26,8 @@
 .equipment {
   border-radius: 5px;
   object-fit: fill;
+  border-radius: 10px;
+  box-shadow: 1px 2px 15px #212529;
   width : 500px;
   height : 350px;
 }
@@ -33,4 +35,19 @@
 .font-weight-bold {
   color: rgb(0, 0, 0);
   font-weight: bold;
+  font-size: 25px;
+}
+
+b, strong {
+  padding: 2px;
+  font-weight: bolder;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.mx-1 {
+  /* margin-right: 0.25rem !important; */
+  /* margin-left: 0.25rem !important; */
+  border-radius: 5px;
 }
