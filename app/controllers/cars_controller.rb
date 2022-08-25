@@ -4,7 +4,7 @@ class CarsController < ApplicationController
 
   # GET /cars
   def index
-    @cars = Car.all
+    @cars = policy_scope(Car)
   end
 
   # GET /cars/new
@@ -51,7 +51,7 @@ class CarsController < ApplicationController
   def destroy
     authorize @car
     @car.bookings.each do |booking|
-      booking.review.destroy
+      booking.review.destroy unless booking.review == nil
     end
     @car.bookings.destroy_all
     @car.destroy
@@ -65,6 +65,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:title, :content, :price, :address, :city, :photo)
+    params.require(:car).permit(:title, :content, :price, :address, :city, :photocar)
   end
 end

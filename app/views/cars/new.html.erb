@@ -12,7 +12,7 @@
       <%= f.input :content, label: "Ecrire une description pour votre voiture", placeholder: "Ma voiture est une voiture mercedes avec un bon moteur ..." %>
       <%= f.input :price, label: "Prix par jour en €", placeholder: "48 €" %>
       <br>
-      <%= f.file_field :image, class: "form-control", label: "Choisissez une belle photo pour votre voiture" %>
+      <%= f.input :photocar, as: :file, label: "Choisissez une belle photo pour votre voiture" %>
       <br>
       <hr>
       <style>
