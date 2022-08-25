@@ -5,7 +5,6 @@ class CarsController < ApplicationController
   # GET /cars
   def index
     @cars = policy_scope(Car)
-    @cars = Car.geocoded
   end
 
   # GET /cars/new
@@ -21,8 +20,9 @@ class CarsController < ApplicationController
       {
         lat: @car.latitude,
         lng: @car.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {car: @car}),
-      }]
+        info_window: render_to_string(partial: "info_window", locals: { car: @car })
+      }
+    ]
     @bookings = @car.bookings
     authorize @car
   end
@@ -58,7 +58,7 @@ class CarsController < ApplicationController
   def destroy
     authorize @car
     @car.bookings.each do |booking|
-      booking.review.destroy
+      booking.review.destroy unless booking.review == nil
     end
     @car.bookings.destroy_all
     @car.destroy

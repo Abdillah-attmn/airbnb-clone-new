@@ -1,0 +1,19 @@
+<h1>Réservations sur mes voitures</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="text-center cards">
+      <% @my_car_bookings.each do |booking| %>
+        <div class="card-category">
+            <% car = Car.find(booking[:user_id]) %>
+            Car name: <%= car.name %><br>
+            Adress: <%= car.address %><br>
+            Total price: <%= booking.value %>
+              <input :pendit, collection Booking::PENDING >
+              <%= f.submit "Confirm your choice" %>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
