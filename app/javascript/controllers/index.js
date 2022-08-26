@@ -18,6 +18,3 @@ application.register("map", MapController)
 
 import UpdatepriceController from "./updateprice_controller"
 application.register("updateprice", UpdatepriceController)
-
-import ChangeStatusController from "./changestatus_controller"
-application.register("change_status", ChangeStatusController)
