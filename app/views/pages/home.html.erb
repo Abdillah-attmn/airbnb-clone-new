@@ -1,9 +1,15 @@
     <!-- research bar -->
-      <div class="containerSearch">
-        <input type="text" placeholder="Search...">
-        <div class="search"></div>
-        <div id="card__image"></div>
-      </div>
+      <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
+          <div class="containerSearch">
+            <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a car"%>
+            <div class="search">
+              <%= submit_tag "Search", class: "search" %>
+            </div>
+          </div>
+        <% end %>
     <!-- research bar-->
 
   <style>

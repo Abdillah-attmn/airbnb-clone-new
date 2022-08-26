@@ -1,10 +1,14 @@
-require 'date'
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
 
   # GET /cars
   def index
     @cars = policy_scope(Car)
+    if params[:query].present?
+      @cars = Car.where("title ILIKE :query OR content ILIKE :query", query: "%#{params[:query]}%")
+    else
+      @cars = Car.all
+    end
   end
 
   # GET /cars/new
