@@ -14,7 +14,7 @@ User.destroy_all
 5.times do
   user = User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name,
                       email: Faker::Internet.email, photo: Faker::Avatar.image,
-                      password: 'password')
+                      password: "password")
   2.times do
     car = Car.create!(title: Faker::Vehicle.make_and_model, content: Faker::Vehicle.fuel_type,
                       photo: "https://source.unsplash.com/random/?car",
@@ -22,11 +22,14 @@ User.destroy_all
                       longitude: Faker::Address.longitude, price: (120..130).to_a.sample,
                       user: user)
 
-    booking = Booking.new(user: car.user, start_date: Faker::Date.in_date_period,
+
+    booking = Booking.new(user: car.user,
+                              start_date: Faker::Date.in_date_period,
                               end_date: Faker::Date.in_date_period,
                               status: ["Pending guest request", "Pending host validation",
                                        "Confirmed", "Canceled"].sample,
                               car: car)
+
     if (booking[:end_date] - booking[:start_date]) >= 0
       booking[:value] = car.price * (booking[:end_date] - booking[:start_date])
     else
