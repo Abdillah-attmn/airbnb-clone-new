@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "http://127.0.0.1:3000/", class: "navbar-brand" do %>
+    <%= link_to "https://airbnb-clonev1-3.herokuapp.com", class: "navbar-brand" do %>
       <%= image_tag "https://previews.123rf.com/images/helloweenn/helloweenn1612/helloweenn161200021/67973090-louer-logo-mod%C3%A8le-de-conception-de-voitures-eps-10.jpg" %>
     <% end %>
 
@@ -12,10 +12,10 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Locations", "http://127.0.0.1:3000/bookings", class: "nav-link" %>
+            <%= link_to "Locations", "/bookings", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Mes voitures", "http://127.0.0.1:3000/cars", class: "nav-link" %>
+            <%= link_to "Mes voitures", "/cars", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
