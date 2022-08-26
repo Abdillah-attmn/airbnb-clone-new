@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="text-center card">
-      <% if  @my_car_bookings.first.length == 0 %>
+      <% if  @my_car_bookings.first.nil? %>
         <p>You don't have a book yet</p>
       <% else %>
         <% @my_car_bookings.each do |car_booking| %>
