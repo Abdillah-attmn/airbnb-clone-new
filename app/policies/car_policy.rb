@@ -19,6 +19,7 @@ class CarPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.where(user: user)
+      # scope.all
     end
   end
 end
