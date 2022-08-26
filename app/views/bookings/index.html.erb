@@ -33,7 +33,6 @@
             <%#= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
               <div class='product-body'>
                 <h2><%= booking.car.title %></h2>
-                <p>City: <strong><%= booking.car.city %></strong></p>
                 <p>Address: <strong><%= booking.car.address %></strong></p>
                 <p>Total price: <strong><%= booking.value %> €</strong></p>
               </div>
@@ -48,16 +47,15 @@
 
         <% if booking.status == "Canceled" %>
           <li class="dashboard">
-            <%= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
+            <%#= cl_image_tag(booking.car.photo.path, width: 400, height: 300, crop: :fill, class: "pdt-image hidden-xs" ) %>
             <div class='product-body'>
               <h2><%= booking.car.title %></h2>
-              <p>City: <strong><%= booking.car.city %></strong></p>
               <p>Address: <strong><%= booking.car.address %></strong></p>
               <p>Total price: <strong><%= booking.value %> €</strong></p>
             </div>
             <div>
               <ul class="list-unstyled hidden-sm hidden-xs padded">
-                <li><p><%= booking.car.user.first_name%> canceled your booking </p></li>
+                <li><p><%= booking.car.user.firstname%> cancelled your booking </p></li>
               </ul>
             </div>
           </li>
@@ -73,7 +71,7 @@
 
 <!-- la 2 eme partie des cardes booking ma voiture-->
     <div class="text-center text-center border border-black bg-info p-3 Regular shadow">
-      <h4 id="red-word">Ma voitur en Location</h4>
+      <h4 id="red-word">Ma voiture en Location</h4>
     </div>
         <div class="wrapper-dashboard">
           <ul class="list-unstyled">
