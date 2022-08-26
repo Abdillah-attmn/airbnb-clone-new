@@ -5,7 +5,6 @@ class CarsController < ApplicationController
   # GET /cars
   def index
     @cars = policy_scope(Car)
-    @cars = Car.geocoded
   end
 
   # GET /cars/new

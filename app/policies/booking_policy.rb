@@ -39,5 +39,4 @@ class BookingPolicy < ApplicationPolicy
 
       user.admin ? scope.all : scope.where(user: user)
     end
-  end
 end
