@@ -22,13 +22,19 @@ User.destroy_all
                       longitude: Faker::Address.longitude, price: (120..130).to_a.sample,
                       user: user)
 
+
     booking = Booking.new(user: car.user,
                               start_date: Faker::Date.in_date_period,
                               end_date: Faker::Date.in_date_period,
                               status: ["Pending guest request", "Pending host validation",
-                                                              "Confirmed", "Canceled"].sample,
+                                       "Confirmed", "Canceled"].sample,
                               car: car)
-    booking.value = car.price * (booking[:end_date] - booking[:start_date])
+
+    if (booking[:end_date] - booking[:start_date]) >= 0
+      booking[:value] = car.price * (booking[:end_date] - booking[:start_date])
+    else
+      booking[:value] = -1
+    end
     booking.save!
     Review.create!(rating: (0..5).to_a.sample, content: "It's good", booking: booking)
   end
