@@ -20,19 +20,18 @@ class BookingsController < ApplicationController
   def index
     @bookings = policy_scope(Booking)
     @my_bookings = @bookings.where(user: current_user)
-    user_car = current_user.cars
-    return @my_car_bookings = user_car.map { |car| car.bookings }
+    my_car_bookings
   end
 
   def list_renter
-    @my_car_bookings = index
+    @my_car_bookings = my_car_bookings
+    authorize @my_car_bookings
   end
 
   # GET /Bookings/:id
   def show
     authorize @booking
     @car = @booking.car
-    authorize @booking
   end
 
   def update
@@ -53,6 +52,11 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def my_car_bookings
+    user_car = current_user.cars
+    @my_car_bookings = user_car.map { |car| car.bookings }
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :value)

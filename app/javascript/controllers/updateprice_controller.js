@@ -8,6 +8,10 @@ export default class extends Controller {
     let nbDays = Date.parse(this.enddateTarget.value) - Date.parse(this.startdateTarget.value)
     nbDays = Math.ceil(nbDays/(1000*3600*24))
     const finalPrice = nbDays * parseInt(this.priceperdayTarget.innerHTML)
-    this.priceTarget.value = finalPrice
+    if (finalPrice >= 0) {
+      this.priceTarget.value = finalPrice
+    } else {
+      this.priceTarget.value = "Error"
+    }
   }
 }

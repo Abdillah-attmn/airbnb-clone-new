@@ -3,17 +3,26 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="text-center cards">
-      <% @my_car_bookings.each do |booking| %>
-        <div class="card-category">
-            <% car = Car.find(booking[:user_id]) %>
-            Car name: <%= car.name %><br>
-            Adress: <%= car.address %><br>
-            Total price: <%= booking.value %>
-              <input :pendit, collection Booking::PENDING >
-              <%= f.submit "Confirm your choice" %>
-            <% end %>
-        </div>
+    <% if  @my_car_bookings.first.length == 0 %>
+      <p>You don't have a book yet</p>
+    <% else %>
+      <% @my_car_bookings.each do |car_booking| %>
+        <% car_booking.each do |booking| %>
+          <div class="card-category" data-controller="change_status">
+              <% car = booking.car %>
+              Car name: <%= car.title %><br>
+              Adress: <%= car.address %><br>
+              Total price: <%= booking.value %><br>
+              Booking status: <div data-target="status"><%= booking.status %></div>
+              <div class="btn btn-success" data-action="click->change#confirm"> <%= link_to "Confirm booking","/bookings/:id/booking_renter" %></div>
+              <div class="btn btn-secondary" data-action="click->change#cancel"> <%= link_to "Cancel booking", "/bookings/:id/booking_renter" %></div>
+              <%= link_to "Destroy booking", "/bookings/:id/booking_renter" ,
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sur you want to delete this booking"},
+                  class:"btn btn-secondary" %>
+          </div>
+        <% end %>
       <% end %>
+    <% end %>
     </div>
   </div>
 </div>
